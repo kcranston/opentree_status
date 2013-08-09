@@ -1,0 +1,17 @@
+<ul id="curators"></ul>
+
+<script type="text/javascript" src="modules.js"></script>
+<script type="text/javascript">
+    var db = require('db').current();
+    var $ = require('jquery')
+    
+    db.getView('example-app','curators',function(err,data) {
+        if (err) {
+            // an error occurred
+            return alert(err);
+        }
+        for (var i=0; i< data.rows.length; i++) {
+            $('<li/>').text(data.rows[i].key).appendTo('#curators');
+        }
+    });
+</script>
